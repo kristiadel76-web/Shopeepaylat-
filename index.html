@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Template demo pusat bantuan customer service bergaya Shopee dengan akses cepat ke WhatsApp." />
+    <meta name="theme-color" content="#ee4d2d" />
+    <title>Pusat Bantuan | Shopee Customer Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --orange: #ee4d2d;
+        --orange-dark: #c93d24;
+        --orange-soft: #fff1ed;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --line: #e9edf2;
+        --surface: #ffffff;
+        --mist: #f7f8fa;
+        --green: #25d366;
+        --shadow: 0 20px 70px rgba(30, 41, 59, 0.11);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--surface);
+        font-family: "DM Sans", sans-serif;
+        line-height: 1.6;
+      }
+      a { color: inherit; text-decoration: none; }
+      button, input, select, textarea { font: inherit; }
+      button { cursor: pointer; }
+      .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--orange);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .eyebrow::before { content: ""; width: 20px; height: 2px; background: currentColor; }
+      .section-heading { max-width: 650px; margin-bottom: 32px; }
+      h1, h2, h3 { font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: -0.04em; line-height: 1.13; margin: 0; }
+      h1 { font-size: clamp(36px, 5.7vw, 66px); }
+      h2 { font-size: clamp(27px, 4vw, 42px); }
+      h3 { font-size: 18px; }
+      p { margin: 0; color: var(--muted); }
+      .top-note {
+        background: #191919;
+        color: #fff;
+        font-size: 12px;
+        letter-spacing: .01em;
+        padding: 9px 20px;
+        text-align: center;
+      }
+      .top-note strong { color: #ffc7b8; }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255,255,255,.92);
+        border-bottom: 1px solid rgba(233,237,242,.85);
+        backdrop-filter: blur(18px);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+        gap: 24px;
+      }
+      .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 220px; }
+      .brand img { width: 48px; height: 48px; object-fit: cover; border-radius: 14px; }
+      .brand-copy { display: grid; gap: 1px; }
+      .brand-copy strong { font: 800 18px "Plus Jakarta Sans", sans-serif; letter-spacing: -.05em; }
+      .brand-copy span { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      nav { display: flex; align-items: center; gap: 28px; color: #5b6472; font-size: 14px; font-weight: 700; }
+      nav a { transition: color .2s ease; }
+      nav a:hover { color: var(--orange); }
+      .nav-cta, .primary-btn {
+        border: 0;
+        border-radius: 12px;
+        background: var(--orange);
+        color: #fff;
+        font-weight: 800;
+        padding: 12px 18px;
+        box-shadow: 0 10px 22px rgba(238,77,45,.2);
+        transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      }
+      .nav-cta:hover, .primary-btn:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 14px 26px rgba(238,77,45,.26); }
+      .menu-toggle { display: none; border: 0; color: var(--ink); background: transparent; padding: 7px; }
+      .menu-toggle svg { width: 26px; height: 26px; }
+
+      .hero {
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(137deg, #fff9f7 0%, #fff 62%);
+        padding: 82px 0 94px;
+      }
+      .hero::before, .hero::after { content: ""; position: absolute; pointer-events: none; border-radius: 999px; filter: blur(2px); }
+      .hero::before { width: 450px; height: 450px; right: -220px; top: -170px; background: rgba(255, 204, 191, .32); }
+      .hero::after { width: 180px; height: 180px; left: -95px; bottom: -65px; background: rgba(238, 77, 45, .08); }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr); align-items: center; gap: 68px; position: relative; z-index: 1; }
+      .hero-copy > p { max-width: 560px; font-size: 17px; margin: 24px 0 30px; }
+      .hero-copy h1 span { color: var(--orange); }
+      .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+      .secondary-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); font-weight: 800; padding: 12px 18px; transition: border .2s, color .2s, transform .2s; }
+      .secondary-btn:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+      .hero-meta { display: flex; gap: 28px; margin-top: 38px; }
+      .meta-item { display: grid; gap: 3px; }
+      .meta-item strong { font: 800 20px "Plus Jakarta Sans", sans-serif; }
+      .meta-item span { color: var(--muted); font-size: 12px; }
+      .hero-art { position: relative; min-height: 410px; }
+      .art-card { position: absolute; border: 1px solid rgba(255,255,255,.7); border-radius: 24px; background: rgba(255,255,255,.78); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+      .art-card.main { inset: 26px 20px 24px 40px; padding: 28px; transform: rotate(3deg); }
+      .art-card.main::before { content: ""; position: absolute; width: 78px; height: 78px; border-radius: 50%; background: var(--orange-soft); right: 30px; top: 28px; }
+      .art-card.main::after { content: ""; position: absolute; width: 150px; height: 150px; border: 18px solid rgba(238,77,45,.08); border-radius: 50%; right: 28px; top: 28px; }
+      .art-logo { position: relative; z-index: 1; width: 58px; height: 58px; object-fit: cover; border-radius: 16px; box-shadow: 0 12px 22px rgba(238,77,45,.18); }
+      .art-line { height: 10px; width: 75%; border-radius: 99px; background: #edf0f3; margin-top: 27px; }
+      .art-line.short { width: 48%; margin-top: 10px; }
+      .art-chat { display: grid; gap: 12px; margin-top: 48px; }
+      .chat-bubble { display: flex; align-items: center; gap: 10px; max-width: 78%; padding: 11px 14px; border-radius: 14px 14px 14px 4px; background: #fff3ef; color: #b23b25; font-size: 12px; font-weight: 700; }
+      .chat-bubble.right { justify-self: end; border-radius: 14px 14px 4px 14px; background: #f2f4f7; color: #647081; }
+      .art-float { display: flex; align-items: center; gap: 10px; padding: 14px 17px; font-size: 12px; font-weight: 800; }
+      .art-float.one { left: -4px; bottom: 12px; }
+      .art-float.two { right: -2px; top: 30px; }
+      .float-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: #fff1ed; color: var(--orange); }
+      .float-icon.green { background: #e8fff1; color: #1ca652; }
+
+      .search-wrap { margin-top: -32px; position: relative; z-index: 3; }
+      .search-card { display: flex; align-items: center; gap: 14px; padding: 14px 17px; border: 1px solid var(--line); border-radius: 17px; background: #fff; box-shadow: 0 18px 36px rgba(30,41,59,.1); }
+      .search-card svg { flex: 0 0 auto; color: #9aa3af; width: 22px; height: 22px; }
+      .search-card input { width: 100%; border: 0; outline: 0; color: var(--ink); font-size: 15px; }
+      .search-card input::placeholder { color: #9aa3af; }
+      .search-label { display: none; }
+      .search-results { display: none; padding: 15px 4px 0; color: var(--orange); font-size: 13px; font-weight: 700; }
+      .search-results.show { display: block; }
+
+      section { padding: 96px 0; }
+      .section-heading p { margin-top: 12px; font-size: 16px; }
+      .categories { background: var(--mist); }
+      .category-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+      .category { min-height: 190px; padding: 22px 20px; border: 1px solid transparent; border-radius: 18px; background: #fff; box-shadow: 0 7px 22px rgba(30,41,59,.04); text-align: left; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+      .category:hover, .category:focus-visible { border-color: #ffd4ca; box-shadow: 0 15px 30px rgba(30,41,59,.08); transform: translateY(-5px); outline: none; }
+      .category-icon { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 24px; border-radius: 13px; color: var(--orange); background: var(--orange-soft); }
+      .category-icon svg { width: 23px; height: 23px; }
+      .category h3 { font-size: 15px; letter-spacing: -.025em; }
+      .category p { margin-top: 7px; font-size: 12px; line-height: 1.5; }
+      .category .arrow { display: block; margin-top: 16px; color: var(--orange); font-size: 18px; font-weight: 800; }
+
+      .help-section { background: #fff; }
+      .help-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 74px; align-items: start; }
+      .help-aside { position: sticky; top: 120px; }
+      .help-aside .section-heading { margin-bottom: 24px; }
+      .help-aside .support-note { display: flex; gap: 12px; align-items: flex-start; padding: 17px; border-radius: 15px; background: #fff8f5; color: #8b4b3e; font-size: 13px; }
+      .support-note svg { flex: 0 0 auto; color: var(--orange); }
+      .faq-list { border-top: 1px solid var(--line); }
+      .faq-item { border-bottom: 1px solid var(--line); }
+      .faq-question { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; padding: 21px 0; border: 0; background: transparent; color: var(--ink); text-align: left; font-weight: 800; }
+      .faq-question:hover { color: var(--orange); }
+      .faq-question svg { flex: 0 0 auto; color: #98a1ad; transition: transform .25s ease; }
+      .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+      .faq-answer > div { overflow: hidden; }
+      .faq-answer p { padding: 0 38px 0 0; font-size: 14px; }
+      .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+      .faq-item.open .faq-answer p { padding-bottom: 20px; }
+      .faq-item.open .faq-question svg { transform: rotate(180deg); color: var(--orange); }
+
+      .contact-section { background: #f7f8fa; }
+      .contact-card { display: grid; grid-template-columns: .9fr 1.1fr; gap: 58px; align-items: start; padding: 48px; border-radius: 26px; background: #20242c; color: #fff; overflow: hidden; position: relative; }
+      .contact-card::after { content: ""; position: absolute; width: 290px; height: 290px; border: 48px solid rgba(238,77,45,.17); border-radius: 50%; right: -125px; bottom: -165px; }
+      .contact-card p { color: #afb7c4; margin-top: 15px; }
+      .contact-points { display: grid; gap: 13px; margin-top: 29px; }
+      .contact-point { display: flex; align-items: center; gap: 10px; color: #f1f4f7; font-size: 13px; font-weight: 600; }
+      .contact-point span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: rgba(238,77,45,.18); color: #ffab98; }
+      form { position: relative; z-index: 1; display: grid; gap: 15px; }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+      label { display: grid; gap: 7px; color: #c8ced8; font-size: 12px; font-weight: 700; }
+      input, select, textarea { width: 100%; border: 1px solid #3b424e; border-radius: 10px; outline: 0; background: #2a3039; color: #fff; padding: 12px 13px; transition: border .2s, box-shadow .2s; }
+      input::placeholder, textarea::placeholder { color: #7e8896; }
+      input:focus, select:focus, textarea:focus { border-color: #ff8066; box-shadow: 0 0 0 3px rgba(238,77,45,.18); }
+      textarea { min-height: 106px; resize: vertical; }
+      select { appearance: auto; }
+      .form-submit { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 3px; }
+      .form-submit button { border: 0; border-radius: 10px; background: #ff6b4d; color: #fff; font-weight: 800; padding: 12px 17px; }
+      .form-submit button:hover { background: var(--orange); }
+      .form-status { color: #99f0ba; font-size: 12px; font-weight: 700; }
+
+      footer { background: #15181d; color: #fff; padding: 34px 0; }
+      .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+      .footer-brand { display: flex; align-items: center; gap: 11px; }
+      .footer-brand img { width: 35px; height: 35px; border-radius: 10px; object-fit: cover; }
+      .footer-brand strong { font-size: 14px; }
+      footer p { color: #8e98a6; font-size: 12px; }
+      .footer-links { display: flex; gap: 18px; color: #bdc4cd; font-size: 12px; }
+      .footer-links a:hover { color: #fff; }
+
+      .whatsapp-float { position: fixed; z-index: 30; right: 22px; top: 50%; display: inline-flex; align-items: center; gap: 10px; padding: 12px 15px 12px 12px; border-radius: 999px; background: var(--green); color: #fff; box-shadow: 0 16px 28px rgba(37,211,102,.29); font-size: 13px; font-weight: 800; transform: translateY(-50%); transition: transform .2s ease, box-shadow .2s ease; }
+      .whatsapp-float:hover { transform: translateY(-50%) scale(1.04); box-shadow: 0 20px 35px rgba(37,211,102,.38); }
+      .whatsapp-float svg { width: 22px; height: 22px; }
+      .whatsapp-pulse { position: absolute; inset: 0; border-radius: inherit; border: 1px solid rgba(37,211,102,.7); animation: pulse 2.2s infinite; }
+      @keyframes pulse { 0% { opacity: .7; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.24); } }
+      .toast { position: fixed; z-index: 40; right: 22px; bottom: 24px; max-width: min(350px, calc(100% - 44px)); padding: 14px 17px; border-radius: 12px; background: #1f2937; color: #fff; font-size: 13px; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .25s, transform .25s; }
+      .toast.show { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 900px) {
+        .hero-grid, .help-layout, .contact-card { grid-template-columns: 1fr; }
+        .hero { padding-top: 62px; }
+        .hero-art { width: min(520px, 100%); margin: 0 auto; min-height: 350px; }
+        .help-aside { position: static; }
+        .category-grid { grid-template-columns: repeat(3, 1fr); }
+        .contact-card { gap: 34px; }
+      }
+      @media (max-width: 680px) {
+        .container { width: min(100% - 28px, 560px); }
+        .top-note { font-size: 10px; }
+        .nav { min-height: 68px; }
+        .brand { min-width: auto; }
+        .brand img { width: 40px; height: 40px; }
+        .brand-copy strong { font-size: 15px; }
+        .brand-copy span { font-size: 9px; }
+        .menu-toggle { display: block; }
+        nav { display: none; position: absolute; left: 14px; right: 14px; top: 61px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: var(--shadow); }
+        nav.open { display: grid; gap: 14px; }
+        .nav-cta { display: none; }
+        .hero { padding: 48px 0 70px; }
+        .hero-copy > p { font-size: 15px; }
+        .hero-meta { gap: 18px; margin-top: 28px; }
+        .hero-art { min-height: 300px; }
+        .art-card.main { inset: 20px 8px 18px 18px; padding: 20px; }
+        .art-float { transform: scale(.9); }
+        section { padding: 70px 0; }
+        .category-grid { grid-template-columns: repeat(2, 1fr); gap: 11px; }
+        .category { min-height: 170px; padding: 17px 15px; }
+        .category-icon { margin-bottom: 19px; }
+        .contact-card { padding: 28px 20px; border-radius: 19px; }
+        .form-row { grid-template-columns: 1fr; gap: 15px; }
+        .footer-inner { align-items: flex-start; flex-direction: column; }
+        .footer-links { flex-wrap: wrap; }
+        .whatsapp-float { right: 14px; bottom: 17px; top: auto; transform: none; padding: 13px; }
+        .whatsapp-float:hover { transform: scale(1.04); }
+        .whatsapp-float span { display: none; }
+        .toast { right: 14px; bottom: 78px; max-width: calc(100% - 28px); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-note"><strong>Template demo:</strong> halaman ini bukan situs resmi Shopee. Ganti nomor WhatsApp sebelum dipakai publik.</div>
+    <header>
+      <div class="container nav">
+        <a class="brand" href="#beranda" aria-label="Shopee Customer Service - beranda">
+          <img src="assets/shopee-logo.png" alt="Logo Shopee" />
+          <span class="brand-copy"><strong>Shopee Help</strong><span>Pusat bantuan pelanggan</span></span>
+        </a>
+        <nav id="mainNav" aria-label="Navigasi utama">
+          <a href="#kategori">Kategori bantuan</a>
+          <a href="#faq">FAQ</a>
+          <a href="#kontak">Hubungi kami</a>
+        </nav>
+        <a class="nav-cta" href="#kontak">Butuh bantuan?</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="beranda">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Pusat bantuan</span>
+            <h1>Butuh bantuan? <span>Kami siap.</span></h1>
+            <p>Temukan jawaban untuk pertanyaan seputar pesanan, pembayaran, pengiriman, pengembalian, dan akun Anda dalam beberapa langkah.</p>
+            <div class="hero-actions">
+              <a class="primary-btn" href="https://wa.me/6283131701161?text=Halo%20Customer%20Service%2C%20saya%20butuh%20bantuan." target="_blank" rel="noopener noreferrer">Hubungi kami</a>
+              <a class="secondary-btn" href="#faq">Baca FAQ <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="hero-meta" aria-label="Informasi dukungan">
+              <div class="meta-item"><strong>24/7</strong><span>Pusat informasi</span></div>
+              <div class="meta-item"><strong>5 menit</strong><span>Rata-rata respons</span></div>
+              <div class="meta-item"><strong>100%</strong><span>Bantuan mudah</span></div>
+            </div>
+          </div>
+          <div class="hero-art" aria-label="Ilustrasi percakapan bantuan">
+            <div class="art-card main">
+              <img class="art-logo" src="assets/shopee-logo.png" alt="" />
+              <div class="art-line"></div><div class="art-line short"></div>
+              <div class="art-chat">
+                <div class="chat-bubble"><span>●</span> Halo, ada yang bisa kami bantu?</div>
+                <div class="chat-bubble right">Saya ingin cek status pesanan.</div>
+                <div class="chat-bubble"><span>●</span> Siap, kami bantu cek.</div>
+              </div>
+            </div>
+            <div class="art-card art-float one"><span class="float-icon">✓</span><span>Solusi cepat</span></div>
+            <div class="art-card art-float two"><span class="float-icon green">✦</span><span>Support online</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container search-wrap">
+        <div class="search-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <label class="search-label" for="helpSearch">Cari bantuan</label>
+          <input id="helpSearch" type="search" placeholder="Cari topik bantuan, misalnya: pengiriman..." autocomplete="off" />
+          <span class="search-label">Tekan Enter</span>
+        </div>
+        <div id="searchResults" class="search-results" role="status" aria-live="polite"></div>
+      </div>
+
+      <section id="kategori" class="categories">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow">Pilih topik</span>
+            <h2>Mulai dari kategori yang sesuai</h2>
+            <p>Semua panduan penting kami susun agar Anda lebih cepat menemukan solusi.</p>
+          </div>
+          <div class="category-grid" id="categoryGrid">
+            <button class="category" data-keywords="pesanan order status membatalkan">
+              <span class="category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5L6 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></span>
+              <h3>Pesanan saya</h3><p>Cek status, ubah, atau batalkan pesanan.</p><span class="arrow">↗</span>
+            </button>
+            <button class="category" data-keywords="pembayaran saldo voucher kartu bayar">
+              <span class="category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span>
+              <h3>Pembayaran</h3><p>Metode bayar, saldo, voucher, dan refund.</p><span class="arrow">↗</span>
+            </button>
+            <button class="category" data-keywords="pengiriman paket lacak kurir alamat">
+              <span class="category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 7 9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/></svg></span>
+              <h3>Pengiriman</h3><p>Lacak paket, ubah alamat, dan estimasi tiba.</p><span class="arrow">↗</span>
+            </button>
+            <button class="category" data-keywords="pengembalian retur barang komplain garansi">
+              <span class="category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 7H4v4M4 11a8 8 0 1 0 2-5.7"/><path d="M12 8v4l3 2"/></svg></span>
+              <h3>Pengembalian</h3><p>Ajukan retur, komplain, dan cek status refund.</p><span class="arrow">↗</span>
+            </button>
+            <button class="category" data-keywords="akun login keamanan profil otp">
+              <span class="category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
+              <h3>Akun & keamanan</h3><p>Login, profil, kata sandi, dan keamanan akun.</p><span class="arrow">↗</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="help-section">
+        <div class="container help-layout">
+          <div class="help-aside">
+            <div class="section-heading">
+              <span class="eyebrow">Jawaban populer</span>
+              <h2>Pertanyaan yang sering ditanyakan</h2>
+              <p>Belum menemukan jawaban yang dicari? Tim kami siap membantu melalui WhatsApp.</p>
+            </div>
+            <div class="support-note">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+              <span>Tips: siapkan nomor pesanan agar proses bantuan berjalan lebih cepat.</span>
+            </div>
+          </div>
+          <div class="faq-list" id="faqList">
+            <div class="faq-item open">
+              <button class="faq-question" aria-expanded="true">Bagaimana cara melacak pesanan saya?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="faq-answer"><div><p>Buka halaman pesanan, pilih pesanan yang ingin dilihat, lalu tekan “Lacak Pesanan”. Anda dapat melihat status dan perjalanan paket secara berkala.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">Apa yang harus dilakukan jika paket belum tiba?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="faq-answer"><div><p>Periksa estimasi tiba dan status terakhir paket. Jika sudah melewati estimasi, hubungi bantuan dengan menyertakan nomor pesanan agar dapat ditindaklanjuti.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">Bagaimana cara mengajukan pengembalian barang?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="faq-answer"><div><p>Pilih pesanan terkait, tekan menu pengembalian, pilih alasan, lalu unggah bukti yang diperlukan. Pastikan pengajuan dilakukan dalam masa perlindungan pesanan.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">Kenapa pembayaran saya belum terverifikasi?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="faq-answer"><div><p>Verifikasi dapat memerlukan beberapa saat. Simpan bukti pembayaran dan jangan melakukan pembayaran ulang sebelum status diperbarui.</p></div></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">Bagaimana cara mengubah nomor telepon akun?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button>
+              <div class="faq-answer"><div><p>Masuk ke pengaturan akun, pilih informasi profil, lalu ubah nomor telepon. Anda akan diminta memverifikasi nomor baru melalui kode OTP.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontak" class="contact-section">
+        <div class="container">
+          <div class="contact-card">
+            <div>
+              <span class="eyebrow" style="color:#ff9e88">Bicarakan dengan kami</span>
+              <h2 style="margin-top:14px">Masih butuh bantuan?</h2>
+              <p>Isi formulir singkat ini. Tim customer service akan menindaklanjuti pertanyaan Anda.</p>
+              <div class="contact-points">
+                <div class="contact-point"><span>✓</span> Respons ramah dan informatif</div>
+                <div class="contact-point"><span>✓</span> Bantuan sesuai topik masalah</div>
+                <div class="contact-point"><span>✓</span> Data Anda tetap aman</div>
+              </div>
+            </div>
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <label>Nama lengkap<input name="name" type="text" placeholder="Contoh: Siti Aminah" required /></label>
+                <label>Email<input name="email" type="email" placeholder="siti@email.com" required /></label>
+              </div>
+              <label>Topik bantuan<select name="topic" required><option value="">Pilih topik</option><option>Pesanan saya</option><option>Pembayaran</option><option>Pengiriman</option><option>Pengembalian</option><option>Akun & keamanan</option></select></label>
+              <label>Pesan<textarea name="message" placeholder="Ceritakan kendala Anda secara singkat..." required></textarea></label>
+              <div class="form-submit"><span class="form-status" id="formStatus" role="status" aria-live="polite"></span><button type="submit">Kirim pertanyaan</button></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-brand"><img src="assets/shopee-logo.png" alt="" /><strong>Shopee Help</strong></div>
+        <p>© 2024 Template demo customer service. Bukan situs resmi Shopee.</p>
+        <div class="footer-links"><a href="#beranda">Beranda</a><a href="#faq">FAQ</a><a href="#kontak">Kontak</a></div>
+      </div>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/6283131701161?text=Halo%20Customer%20Service%2C%20saya%20butuh%20bantuan." target="_blank" rel="noopener noreferrer" aria-label="Hubungi customer service melalui WhatsApp">
+      <span class="whatsapp-pulse" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.2.3 11.7c0 2.1.6 4.1 1.6 5.9L.2 23.9l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.7-5.2 11.7-11.7 0-3.1-1.2-6-3.4-8.3ZM12.2 21.5h-.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.8 9.8 0 0 1-1.5-5.2C2.4 6.3 6.8 2 12.1 2c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.3 9.7-9.7 9.7Zm5.3-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.6-3.2-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.1 4.5 1.9.8 2.4.8 3.3.7.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"/></svg>
+      <span>Chat WhatsApp</span>
+    </a>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const menuToggle = document.querySelector('#menuToggle');
+      const mainNav = document.querySelector('#mainNav');
+      menuToggle.addEventListener('click', () => {
+        const open = mainNav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+      });
+      mainNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }));
+
+      document.querySelectorAll('.faq-question').forEach((question) => {
+        question.addEventListener('click', () => {
+          const item = question.closest('.faq-item');
+          const isOpen = item.classList.toggle('open');
+          question.setAttribute('aria-expanded', String(isOpen));
+        });
+      });
+
+      const searchInput = document.querySelector('#helpSearch');
+      const searchResults = document.querySelector('#searchResults');
+      const categories = [...document.querySelectorAll('.category')];
+      const faqItems = [...document.querySelectorAll('.faq-item')];
+      searchInput.addEventListener('input', (event) => {
+        const term = event.target.value.trim().toLowerCase();
+        if (!term) {
+          categories.forEach((item) => item.hidden = false);
+          faqItems.forEach((item) => item.hidden = false);
+          searchResults.classList.remove('show');
+          return;
+        }
+        let count = 0;
+        categories.forEach((item) => {
+          const match = `${item.textContent} ${item.dataset.keywords}`.toLowerCase().includes(term);
+          item.hidden = !match;
+          if (match) count += 1;
+        });
+        faqItems.forEach((item) => {
+          const match = item.textContent.toLowerCase().includes(term);
+          item.hidden = !match;
+          if (match) count += 1;
+        });
+        searchResults.textContent = count ? `${count} hasil ditemukan untuk “${event.target.value}”.` : `Belum ada hasil untuk “${event.target.value}”. Coba kata kunci lain.`;
+        searchResults.classList.add('show');
+      });
+      categories.forEach((category) => category.addEventListener('click', () => {
+        searchInput.value = category.querySelector('h3').textContent;
+        searchInput.dispatchEvent(new Event('input'));
+        document.querySelector('#kategori').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }));
+
+      const form = document.querySelector('#contactForm');
+      const status = document.querySelector('#formStatus');
+      const toast = document.querySelector('#toast');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          status.textContent = '';
+          return;
+        }
+        status.textContent = 'Pertanyaan berhasil disiapkan.';
+        toast.textContent = 'Terima kasih. Pesan Anda sudah tercatat untuk demo ini.';
+        toast.classList.add('show');
+        form.reset();
+        window.setTimeout(() => toast.classList.remove('show'), 4200);
+      });
+    </script>
+  </body>
+</html>
